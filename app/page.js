@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 import partyAnimation from "../public/BG-Party (1).json";
 import DashboardPreview from "@/components/DashboardPreview";
-import { Play, Maximize, Volume2, MoreVertical } from 'lucide-react';
+import { Play, Maximize, Volume2, MoreVertical, CheckCircle2 } from 'lucide-react';
 // section 3 logo
 const logos = [
   { name: "Nutribullet", url: "https://i.ibb.co.com/LdTp91y7/logos-logistica-promocional-logo-61-EAEDFE0-D-seeklogo-com.png" },
@@ -18,6 +18,12 @@ const logos = [
 
 
 export default function Home() {
+  const features = [
+    "Targeted Audience Reach",
+    "Real Organic Engagement",
+    "AI-Powered Analytics",
+    "Safe & Secure Growth"
+  ];
   return (
     <main className="relative min-h-screen bg-white overflow-hidden pt-20">
       {/* section 1 */}
@@ -170,88 +176,122 @@ export default function Home() {
           <div className="absolute inset-y-0 right-0 w-24 md:w-40 bg-gradient-to-l from-white via-white/90 to-transparent z-20 pointer-events-none"></div>
         </div>
       </section>
-      <section className="py-24 bg-white overflow-hidden flex justify-center items-center">
+      <section className="py-24 bg-white relative overflow-hidden flex items-center justify-center min-h-[800px]">
       
-      <div className="max-w-5xl mx-auto px-4 w-full">
-        
-        {/* Main Gradient Card Container */}
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+      {/* মেইন কন্টেইনার */}
+      <div className="relative w-full max-w-5xl h-[600px] px-4">
+
+        {/* 1. Gradient Background Card (নিচে এবং বামে) + Content + Floating Animation */}
+        <motion.div
+          initial={{ opacity: 0, x: -50, y: 50 }}
+          whileInView={{ opacity: 1, x: 0, y: 0 }}
+          // Floating Animation (Continuous movement)
+          animate={{ y: [0, -15, 0] }} 
+          transition={{ 
+            duration: 6, 
+            repeat: Infinity, 
+            ease: "easeInOut",
+            delay: 0 // No delay for start
+          }}
           viewport={{ once: true }}
-          className="relative w-full rounded-[3rem] p-8 md:p-12 overflow-hidden"
+          className="absolute bottom-0 left-0 md:left-4 w-[90%] md:w-[70%] h-[70%] rounded-[2.5rem] z-0 shadow-xl overflow-hidden"
           style={{
-            // ইমেজের মত গ্রেডিয়েন্ট কালার (Blue -> Purple -> Orange/Pink)
-            background: 'linear-gradient(135deg, #1A73E8 0%, #8B5CF6 50%, #F43F5E 100%)' 
+            background: 'linear-gradient(135deg, #2E7CF6 0%, #A855F7 50%, #EC4899 100%)'
           }}
         >
-          {/* Background Decor Shapes (Optional - to match the blurry feel) */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/20 blur-3xl rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+          {/* Decorative shapes inside card */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
 
-          <div className="flex flex-col items-center justify-center gap-8 relative z-10">
+          {/* Content inside the Gradient Card (বাম পাশে যা যোগ করতে বলেছেন) */}
+          <div className="absolute top-10 left-8 md:left-12 z-10 max-w-[45%]">
+             <div className="space-y-6">
+                {features.map((item, index) => (
+                  <motion.div 
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.5 + (index * 0.1) }}
+                    className="flex items-center gap-3"
+                  >
+                    <div className="bg-white/20 p-1.5 rounded-full backdrop-blur-sm">
+                      <CheckCircle2 size={18} className="text-white" />
+                    </div>
+                    <span className="text-white font-medium text-sm md:text-lg tracking-wide shadow-sm">
+                      {item}
+                    </span>
+                  </motion.div>
+                ))}
+             </div>
+          </div>
+
+          {/* Bottom Text (আগের মতো) */}
+          <div className="absolute bottom-8 w-full text-center px-4">
+            <h2 className="text-white text-lg md:text-2xl font-bold drop-shadow-md tracking-wide">
+              Patented, Personalized AI Growth Service
+            </h2>
+          </div>
+        </motion.div>
+
+        {/* 2. Video Player (উপরে এবং ডানে) + Floating Animation */}
+        <motion.div
+          initial={{ opacity: 0, x: 50, y: -50 }}
+          whileInView={{ opacity: 1, x: 0, y: 0 }}
+          // Floating Animation (Continuous movement - slightly different timing for parallax effect)
+          animate={{ y: [0, -20, 0] }}
+          transition={{ 
+            duration: 7, 
+            repeat: Infinity, 
+            ease: "easeInOut",
+            delay: 0.5 // Slight delay to make them move unsynchronized
+          }}
+          viewport={{ once: true }}
+          className="absolute top-0 right-0 md:right-4 w-[85%] md:w-[65%] h-[65%] z-10"
+        >
+          {/* ভিডিও কন্টেইনার */}
+          <div className="bg-white p-3 md:p-4 rounded-[2rem] shadow-[0_30px_60px_rgba(0,0,0,0.3)] w-full h-full transform rotate-1 transition-transform hover:rotate-0 duration-500">
             
-            {/* 1. Video Player Container with White Border */}
-            <div className="w-full max-w-4xl bg-white p-3 md:p-4 rounded-[2rem] shadow-2xl">
-              <div className="relative aspect-video bg-gray-100 rounded-[1.5rem] overflow-hidden group cursor-pointer">
+            {/* Netflix Style Player */}
+            <div className="relative w-full h-full bg-[#0A0A0A] rounded-[1.5rem] overflow-hidden group cursor-pointer ring-1 ring-white/10">
+              
+              {/* Background Image */}
+              <div className="absolute inset-0">
+                 <img 
+                    src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=2070&auto=format&fit=crop" 
+                    alt="Video Background" 
+                    className="w-full h-full object-cover opacity-50"
+                 />
+                 <div className="absolute inset-0 bg-black/40"></div>
+              </div>
+
+              {/* Center Text */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center z-20 pb-12">
+                <h3 className="text-5xl md:text-7xl font-bold text-white tracking-tighter drop-shadow-2xl">
+                  So <span className="text-[#E50914]">what</span>
+                </h3>
+              </div>
+
+              {/* Controls UI */}
+              <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black via-black/60 to-transparent text-white z-30">
+                <div className="w-full h-1.5 bg-gray-600 rounded-full mb-4 relative group/bar overflow-hidden">
+                  <div className="absolute top-0 left-0 h-full w-[45%] bg-[#E50914]"></div>
+                </div>
                 
-                {/* Video Image / Thumbnail */}
-                <img 
-                  src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop" 
-                  alt="Video content" 
-                  className="w-full h-full object-cover"
-                />
-
-                {/* Overlay Text inside Video (Matching the 'So what' style) */}
-                <div className="absolute inset-0 flex items-center justify-center bg-black/10">
-                   <h3 className="text-4xl md:text-6xl font-semibold text-white/90 drop-shadow-lg">
-                     So <span className="text-white/70">what</span>
-                   </h3>
-                </div>
-
-                {/* Custom Video Controls UI (Simulated as per image) */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 bg-gradient-to-t from-black/60 to-transparent text-white">
-                  {/* Progress Bar */}
-                  <div className="w-full h-1 bg-white/30 rounded-full mb-4 relative">
-                    <div className="absolute top-0 left-0 h-full w-[20%] bg-white rounded-full"></div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <Play fill="white" size={24} className="hover:scale-110 transition-transform"/>
+                    <span className="text-sm font-medium opacity-90">0:21 / 1:47</span>
                   </div>
-                  
-                  {/* Control Icons */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <Play fill="currentColor" size={20} />
-                      <span className="text-sm font-medium">0:21 / 1:47</span>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <Volume2 size={20} />
-                      <Maximize size={20} />
-                      <MoreVertical size={20} />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Big Center Play Button (Optional - appears on hover) */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/20">
-                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30">
-                     <Play fill="white" className="text-white ml-1" />
+                  <div className="flex items-center gap-4 opacity-90">
+                    <Volume2 size={22} />
+                    <Maximize size={22} />
                   </div>
                 </div>
               </div>
+
             </div>
-
-            {/* 2. Bottom Text */}
-            <motion.h2 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-white text-2xl md:text-4xl font-bold text-center tracking-wide drop-shadow-md"
-            >
-              Patented, Personalized AI Growth Service
-            </motion.h2>
-
           </div>
         </motion.div>
+
       </div>
     </section>
     </main>
