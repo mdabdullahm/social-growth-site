@@ -8,10 +8,10 @@ const Navbar = () => {
     const [activeBtn, setActiveBtn] = useState('getStarted');
 
     // Desktop base style
-    const desktopBaseStyle = "px-7 py-3 rounded-full text-sm font-bold transition-all active:scale-95 cursor-pointer relative flex items-center justify-center overflow-hidden";
+    const desktopBaseStyle = "px-7 py-3 rounded-full text-sm font-bold transition-all duration-300 active:scale-95 cursor-pointer relative flex items-center justify-center overflow-hidden";
     
     // Mobile base style
-    const mobileBaseStyle = "w-full py-3.5 rounded-xl font-bold transition-all active:scale-95 relative flex items-center justify-center overflow-hidden";
+    const mobileBaseStyle = "w-full py-3.5 rounded-xl font-bold transition-all duration-300 active:scale-95 relative flex items-center justify-center overflow-hidden";
 
     // ৩ নম্বর গ্লো এনিমেশন কম্পোনেন্ট
     const ActiveGlow = ({ isMobile = false }) => (
@@ -22,14 +22,15 @@ const Navbar = () => {
                 style={{
                     background: "conic-gradient(from 0deg, transparent 60%, #3b82f6, #9333ea, #3b82f6)",
                 }}
-                className="absolute inset-[-300%]" // মোবাইলে রোটেটিং এরিয়া একটু বড় রাখা হয়েছে গ্যাপ কমানোর জন্য
+                className="absolute inset-[-300%]" 
             />
-            <div className={`absolute inset-[2px] bg-[#0FE1F2] ${isMobile ? 'rounded-[10px]' : 'rounded-full'} z-10`} />
+            {/* বাটন ব্যাকগ্রাউন্ড (হলুদ) */}
+            <div className={`absolute inset-[2px] bg-[#EEF20F] ${isMobile ? 'rounded-[10px]' : 'rounded-full'} z-10`} />
         </>
     );
 
     return (
-        <nav className="w-full z-50 bg-white/95 backdrop-blur-md shadow-sm left-0 right-0">
+        <nav className="w-full z-50 bg-white/20 backdrop-blur-xl shadow-sm left-0 right-0">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
                 <div className="flex justify-between h-20 items-center">
                     
@@ -47,19 +48,25 @@ const Navbar = () => {
                         <Link href="#" className="hover:text-blue-600 transition-colors">Products</Link>
                         <Link href="#" className="hover:text-blue-600 transition-colors">Pricing</Link>
                         <Link href="#" className="hover:text-blue-600 transition-colors">Tools</Link>
-                        <Link onClick={() => setIsOpen(false)} href="#" className="py-3 px-2">About</Link>
+                        <Link href="#" className="hover:text-blue-600 transition-colors">About</Link>
                     </div>
 
-                    {/* 3. Desktop Buttons */}
-                    <div className="hidden lg:flex items-center space-x-3">
+                    {/* 3. Desktop Buttons with Glow Shadows */}
+                    <div className="hidden lg:flex items-center space-x-5">
                         <button onClick={() => setActiveBtn('signin')} 
-                            className={`${desktopBaseStyle} ${activeBtn === 'signin' ? "text-black" : "text-gray-700 hover:text-blue-600"}`}>
+                            className={`${desktopBaseStyle} 
+                            ${activeBtn === 'signin' 
+                                ? "text-black shadow-[0_10px_20px_rgba(238,242,15,0.4)] hover:shadow-[0_15px_25px_rgba(238,242,15,0.6)] -translate-y-[2px]" 
+                                : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"}`}>
                             {activeBtn === 'signin' && <ActiveGlow />}
                             <span className="relative z-20">Sign in</span>
                         </button>
 
                         <button onClick={() => setActiveBtn('getStarted')} 
-                            className={`${desktopBaseStyle} ${activeBtn === 'getStarted' ? "text-black" : "text-gray-700 hover:text-blue-600"}`}>
+                            className={`${desktopBaseStyle} 
+                            ${activeBtn === 'getStarted' 
+                                ? "text-black shadow-[0_10px_20px_rgba(238,242,15,0.4)] hover:shadow-[0_15px_25px_rgba(238,242,15,0.6)] -translate-y-[2px]" 
+                                : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"}`}>
                             {activeBtn === 'getStarted' && <ActiveGlow />}
                             <span className="relative z-20">Get Started</span>
                         </button>
@@ -94,15 +101,14 @@ const Navbar = () => {
                         <Link onClick={() => setIsOpen(false)} href="/" className="py-3 px-2 border-b border-gray-50">Tiktok</Link>
                         <Link onClick={() => setIsOpen(false)} href="#" className="py-3 px-2 border-b border-gray-50">Products</Link>
                         <Link onClick={() => setIsOpen(false)} href="#" className="py-3 px-2 border-b border-gray-50">Pricing</Link>
-                        <Link href="#" className="py-3 px-2 border-b border-gray-50">Tools</Link>
                         <Link onClick={() => setIsOpen(false)} href="#" className="py-3 px-2">About</Link>
                     </div>
                     
-                    {/* Mobile Action Buttons */}
+                    {/* Mobile Action Buttons with Glow */}
                     <div className="flex flex-col gap-4">
                         <button 
                             onClick={() => { setActiveBtn('signin'); setIsOpen(false); }} 
-                            className={`${mobileBaseStyle} ${activeBtn === 'signin' ? "text-white shadow-xl" : "text-gray-700 border border-gray-200"}`}
+                            className={`${mobileBaseStyle} ${activeBtn === 'signin' ? "text-black shadow-[0_8px_15px_rgba(238,242,15,0.4)]" : "text-gray-700 border border-gray-200"}`}
                         >
                             {activeBtn === 'signin' && <ActiveGlow isMobile={true} />}
                             <span className="relative z-20">Sign In</span>
@@ -110,7 +116,7 @@ const Navbar = () => {
 
                         <button 
                             onClick={() => { setActiveBtn('getStarted'); setIsOpen(false); }} 
-                            className={`${mobileBaseStyle} ${activeBtn === 'getStarted' ? "text-white shadow-xl" : "text-gray-700 border border-gray-200"}`}
+                            className={`${mobileBaseStyle} ${activeBtn === 'getStarted' ? "text-black shadow-[0_8px_15px_rgba(238,242,15,0.4)]" : "text-gray-700 border border-gray-200"}`}
                         >
                             {activeBtn === 'getStarted' && <ActiveGlow isMobile={true} />}
                             <span className="relative z-20">Get Started</span>
