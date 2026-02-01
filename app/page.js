@@ -2,8 +2,12 @@
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 import partyAnimation from "../public/BG-Party (1).json";
-import DashboardPreview from "@/components/DashboardPreview";
-import { Play, Maximize, Volume2, MoreVertical, CheckCircle2 } from 'lucide-react';
+import DashboardPreview from "@/components/Home/DashboardPreview";
+import { Play, Maximize, Volume2, CheckCircle2 } from 'lucide-react';
+import { useState } from "react";
+import Features from "@/components/Home/Features";
+import GrowthPreview from "@/components/Home/GrowthPreview";
+import SuccessStories from "@/components/Home/SuccessStories";
 // section 3 logo
 const logos = [
   { name: "Nutribullet", url: "https://i.ibb.co.com/LdTp91y7/logos-logistica-promocional-logo-61-EAEDFE0-D-seeklogo-com.png" },
@@ -17,6 +21,75 @@ const logos = [
 ];
 
 
+
+// video data
+const testimonials = [
+  {
+    id: 1,
+    name: "Jake Pitts",
+    handle: "@jakepittsbvb",
+    followers: "592K",
+    color: "border-[#FF6B6B] bg-[#FF6B6B]",
+    // সরাসরি কাজ করবে এমন Unsplash লিঙ্ক
+    img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&q=80",
+    avatar: "https://i.pravatar.cc/150?u=jake",
+    initials: "JP"
+  },
+  {
+    id: 2,
+    name: "Gary Holt",
+    handle: "@garyholt_official",
+    followers: "424K",
+    color: "border-[#FFB74D] bg-[#FFB74D]",
+    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&q=80",
+    avatar: "https://i.pravatar.cc/150?u=gary",
+    initials: "GH"
+  },
+  {
+    id: 3,
+    name: "Evan Breen",
+    handle: "@laturtle69",
+    followers: "614K",
+    color: "border-[#F06292] bg-[#F06292]",
+    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80",
+    avatar: "https://i.pravatar.cc/150?u=evan",
+    initials: "EB"
+  },
+  {
+    id: 4,
+    name: "Janelle Pierzina",
+    handle: "@janellepierzina",
+    followers: "253K",
+    color: "border-[#BA68C8] bg-[#BA68C8]",
+    img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&q=80",
+    avatar: "https://i.pravatar.cc/150?u=janelle",
+    initials: "JP"
+  },
+];
+
+
+
+// Image handler component (will show initial if there is no image)
+const AvatarImage = ({ src, initials }) => {
+  const [isError, setIsError] = useState(false);
+  return (
+    <div className="w-full h-full bg-gray-300 flex items-center justify-center text-gray-700 font-bold text-sm">
+      {!isError ? (
+        <img
+          src={src}
+          alt="avatar"
+          className="w-full h-full object-cover"
+          onError={() => setIsError(true)}
+        />
+      ) : (
+        <span>{initials}</span>
+      )}
+    </div>
+  );
+};
+
+
+
 export default function Home() {
   const features = [
     "Targeted Audience Reach",
@@ -24,6 +97,7 @@ export default function Home() {
     "AI-Powered Analytics",
     "Safe & Secure Growth"
   ];
+
   return (
     <main className="relative min-h-screen bg-white overflow-hidden pt-20">
       {/* section 1 */}
@@ -176,37 +250,49 @@ export default function Home() {
           <div className="absolute inset-y-0 right-0 w-24 md:w-40 bg-gradient-to-l from-white via-white/90 to-transparent z-20 pointer-events-none"></div>
         </div>
       </section>
+      {/* Targeted Growth video section 4 */}
       <section className="py-24 bg-white relative overflow-hidden flex items-center justify-center min-h-[800px]">
-      
-      {/* মেইন কন্টেইনার */}
-      <div className="relative w-full max-w-5xl h-[600px] px-4">
 
-        {/* 1. Gradient Background Card (নিচে এবং বামে) + Content + Floating Animation */}
-        <motion.div
-          initial={{ opacity: 0, x: -50, y: 50 }}
-          whileInView={{ opacity: 1, x: 0, y: 0 }}
-          // Floating Animation (Continuous movement)
-          animate={{ y: [0, -15, 0] }} 
-          transition={{ 
-            duration: 6, 
-            repeat: Infinity, 
-            ease: "easeInOut",
-            delay: 0 // No delay for start
-          }}
-          viewport={{ once: true }}
-          className="absolute bottom-0 left-0 md:left-4 w-[90%] md:w-[70%] h-[70%] rounded-[2.5rem] z-0 shadow-xl overflow-hidden"
-          style={{
-            background: 'linear-gradient(135deg, #2E7CF6 0%, #A855F7 50%, #EC4899 100%)'
-          }}
-        >
-          {/* Decorative shapes inside card */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+        {/* মেইন কন্টেইনার */}
+        <div className="relative w-full max-w-5xl h-[600px] px-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight mb-4"
+          >
+            Targeted, Organic <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+              Instagram Growth
+            </span>
+          </motion.h2>
+          {/* 1. Gradient Background Card (নিচে এবং বামে) + Content + Floating Animation */}
+          <motion.div
+            initial={{ opacity: 0, x: -50, y: 50 }}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
+            // Floating Animation (Continuous movement)
+            animate={{ y: [0, -15, 0] }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0 // No delay for start
+            }}
+            viewport={{ once: true }}
+            className="absolute bottom-0 left-0 md:left-4 w-[90%] md:w-[70%] h-[70%] rounded-[2.5rem] z-0 shadow-xl overflow-hidden"
+            style={{
+              background: 'linear-gradient(135deg, #2E7CF6 0%, #A855F7 50%, #EC4899 100%)'
+            }}
+          >
+            {/* Decorative shapes inside card */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
 
-          {/* Content inside the Gradient Card (বাম পাশে যা যোগ করতে বলেছেন) */}
-          <div className="absolute top-10 left-8 md:left-12 z-10 max-w-[45%]">
-             <div className="space-y-6">
+            {/* Content inside the Gradient Card (বাম পাশে যা যোগ করতে বলেছেন) */}
+            <div className="absolute top-10 left-8 md:left-12 z-10 max-w-[45%]">
+              <div className="space-y-6">
                 {features.map((item, index) => (
-                  <motion.div 
+                  <motion.div
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -221,79 +307,165 @@ export default function Home() {
                     </span>
                   </motion.div>
                 ))}
-             </div>
-          </div>
-
-          {/* Bottom Text (আগের মতো) */}
-          <div className="absolute bottom-8 w-full text-center px-4">
-            <h2 className="text-white text-lg md:text-2xl font-bold drop-shadow-md tracking-wide">
-              Patented, Personalized AI Growth Service
-            </h2>
-          </div>
-        </motion.div>
-
-        {/* 2. Video Player (উপরে এবং ডানে) + Floating Animation */}
-        <motion.div
-          initial={{ opacity: 0, x: 50, y: -50 }}
-          whileInView={{ opacity: 1, x: 0, y: 0 }}
-          // Floating Animation (Continuous movement - slightly different timing for parallax effect)
-          animate={{ y: [0, -20, 0] }}
-          transition={{ 
-            duration: 7, 
-            repeat: Infinity, 
-            ease: "easeInOut",
-            delay: 0.5 // Slight delay to make them move unsynchronized
-          }}
-          viewport={{ once: true }}
-          className="absolute top-0 right-0 md:right-4 w-[85%] md:w-[65%] h-[65%] z-10"
-        >
-          {/* ভিডিও কন্টেইনার */}
-          <div className="bg-white p-3 md:p-4 rounded-[2rem] shadow-[0_30px_60px_rgba(0,0,0,0.3)] w-full h-full transform rotate-1 transition-transform hover:rotate-0 duration-500">
-            
-            {/* Netflix Style Player */}
-            <div className="relative w-full h-full bg-[#0A0A0A] rounded-[1.5rem] overflow-hidden group cursor-pointer ring-1 ring-white/10">
-              
-              {/* Background Image */}
-              <div className="absolute inset-0">
-                 <img 
-                    src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=2070&auto=format&fit=crop" 
-                    alt="Video Background" 
-                    className="w-full h-full object-cover opacity-50"
-                 />
-                 <div className="absolute inset-0 bg-black/40"></div>
               </div>
-
-              {/* Center Text */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center z-20 pb-12">
-                <h3 className="text-5xl md:text-7xl font-bold text-white tracking-tighter drop-shadow-2xl">
-                  So <span className="text-[#E50914]">what</span>
-                </h3>
-              </div>
-
-              {/* Controls UI */}
-              <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black via-black/60 to-transparent text-white z-30">
-                <div className="w-full h-1.5 bg-gray-600 rounded-full mb-4 relative group/bar overflow-hidden">
-                  <div className="absolute top-0 left-0 h-full w-[45%] bg-[#E50914]"></div>
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <Play fill="white" size={24} className="hover:scale-110 transition-transform"/>
-                    <span className="text-sm font-medium opacity-90">0:21 / 1:47</span>
-                  </div>
-                  <div className="flex items-center gap-4 opacity-90">
-                    <Volume2 size={22} />
-                    <Maximize size={22} />
-                  </div>
-                </div>
-              </div>
-
             </div>
-          </div>
-        </motion.div>
 
-      </div>
-    </section>
+            {/* Bottom Text (আগের মতো) */}
+            <div className="absolute bottom-8 w-full text-center px-4">
+              <h2 className="text-white text-lg md:text-2xl font-bold drop-shadow-md tracking-wide">
+                Patented, Personalized AI Growth Service
+              </h2>
+            </div>
+          </motion.div>
+
+          {/* 2. Video Player (উপরে এবং ডানে) + Floating Animation */}
+          <motion.div
+            initial={{ opacity: 0, x: 50, y: -50 }}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
+            // Floating Animation (Continuous movement - slightly different timing for parallax effect)
+            animate={{ y: [0, -20, 0] }}
+            transition={{
+              duration: 7,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.5 // Slight delay to make them move unsynchronized
+            }}
+            viewport={{ once: true }}
+            className="absolute top-0 right-0 md:right-4 w-[85%] md:w-[65%] h-[65%] z-10"
+          >
+            {/* ভিডিও কন্টেইনার */}
+            <div className="bg-white p-3 md:p-4 rounded-[2rem] shadow-[0_30px_60px_rgba(0,0,0,0.3)] w-full h-full transform rotate-1 transition-transform hover:rotate-0 duration-500">
+
+              {/* Netflix Style Player */}
+              <div className="relative w-full h-full bg-[#0A0A0A] rounded-[1.5rem] overflow-hidden group cursor-pointer ring-1 ring-white/10">
+
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                  <img
+                    src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=2070&auto=format&fit=crop"
+                    alt="Video Background"
+                    className="w-full h-full object-cover opacity-50"
+                  />
+                  <div className="absolute inset-0 bg-black/40"></div>
+                </div>
+
+                {/* Center Text */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center z-20 pb-12">
+                  <h3 className="text-5xl md:text-7xl font-bold text-white tracking-tighter drop-shadow-2xl">
+                    So <span className="text-[#E50914]">what</span>
+                  </h3>
+                </div>
+
+                {/* Controls UI */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black via-black/60 to-transparent text-white z-30">
+                  <div className="w-full h-1.5 bg-gray-600 rounded-full mb-4 relative group/bar overflow-hidden">
+                    <div className="absolute top-0 left-0 h-full w-[45%] bg-[#E50914]"></div>
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <Play fill="white" size={24} className="hover:scale-110 transition-transform" />
+                      <span className="text-sm font-medium opacity-90">0:21 / 1:47</span>
+                    </div>
+                    <div className="flex items-center gap-4 opacity-90">
+                      <Volume2 size={22} />
+                      <Maximize size={22} />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </motion.div>
+
+        </div>
+      </section>
+      {/* video section 5 */}
+      <section className="py-24 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4">
+
+          <h2 className="text-4xl md:text-6xl font-black text-center text-slate-900 mb-16">
+            Video Testimonials
+          </h2>
+
+          {/* মাস্কিং এফেক্ট (দুই পাশে ঝাপসা করার জন্য - ঐচ্ছিক) */}
+          <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]">
+
+            <motion.div
+              className="flex gap-6 w-max"
+              // অ্যানিমেশন লজিক: 0% থেকে -50% পর্যন্ত যাবে (কারণ আমরা লিস্ট ডবল করেছি)
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{
+                repeat: Infinity, // চলতেই থাকবে
+                ease: "linear",   // একই গতিতে চলবে
+                duration: 30,     // কত দ্রুত চলবে (মান বাড়ালে স্লো হবে, কমালে ফাস্ট হবে)
+              }}
+              // হোভার করলে অ্যানিমেশন থামবে
+              whileHover={{ playState: "paused" }}
+            >
+              {/* লিস্ট দুইবার রেন্ডার করা হচ্ছে লুপ ঠিক রাখার জন্য */}
+              {[...testimonials, ...testimonials].map((item, index) => (
+                <motion.div
+                  // key-এর সাথে index যোগ করা হয়েছে যাতে ডুপ্লিকেট key এরর না দেয়
+                  key={`${item.id}-${index}`}
+                  whileHover={{ y: -10, scale: 1.02 }}
+                  className={`relative flex-shrink-0 w-[300px] h-[500px] md:w-[350px] md:h-[550px] rounded-[3rem] border-4 ${item.color.split(' ')[0]} overflow-hidden shadow-2xl group bg-gray-100`}
+                >
+                  {/* মেইন ভিডিও ইমেজ */}
+                  <img
+                    src={item.img}
+                    alt={item.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    onError={(e) => { e.target.src = "https://via.placeholder.com/400x600?text=Video+Thumbnail"; }}
+                  />
+
+                  {/* প্রোফাইল ইনফো */}
+                  <div className="absolute top-6 left-6 flex items-center gap-3 z-10">
+                    <div className="w-12 h-12 rounded-full border-2 border-white overflow-hidden shadow-lg bg-white">
+                      <AvatarImage src={item.avatar} initials={item.initials} />
+                    </div>
+                    <div className="text-white drop-shadow-md">
+                      <p className="font-bold text-lg leading-tight">{item.name}</p>
+                      <p className="text-xs font-medium opacity-90">{item.handle}</p>
+                    </div>
+                  </div>
+
+                  {/* প্লে বাটন */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300">
+                      <Play size={24} className="text-black ml-1" fill="black" />
+                    </div>
+                  </div>
+
+                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
+
+                  {/* ফলোয়ার ব্যাজ */}
+                  <div className="absolute bottom-8 inset-x-0 flex justify-center px-8">
+                    <div className={`w-full py-3.5 rounded-2xl ${item.color.split(' ')[1]} text-white text-center font-bold text-lg shadow-xl border border-white/20`}>
+                      <span className="text-xl">{item.followers}</span> Followers
+                    </div>
+                  </div>
+
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* features section 5 */}
+      <section>
+        <Features/>
+      </section>
+
+      {/* Growth Preview section 6 */}
+      <section>
+        <GrowthPreview/>
+      </section>
+      {/* Success Stories section 7*/}
+      <section>
+        <SuccessStories/>
+      </section>
     </main>
   );
 }
