@@ -8,6 +8,10 @@ import { useState } from "react";
 import Features from "@/components/Home/Features";
 import GrowthPreview from "@/components/Home/GrowthPreview";
 import SuccessStories from "@/components/Home/SuccessStories";
+import TrustStats from "@/components/Home/TrustStats";
+import DetailSections from "@/components/Home/DetailSections";
+import SecretSauce from "@/components/Home/SecretSauce";
+import PremiumPress from "@/components/Home/PremiumPress";
 // section 3 logo
 const logos = [
   { name: "Nutribullet", url: "https://i.ibb.co.com/LdTp91y7/logos-logistica-promocional-logo-61-EAEDFE0-D-seeklogo-com.png" },
@@ -452,12 +456,10 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* features section 5 */}
       <section>
         <Features/>
       </section>
-
       {/* Growth Preview section 6 */}
       <section>
         <GrowthPreview/>
@@ -466,6 +468,22 @@ export default function Home() {
       <section>
         <SuccessStories/>
       </section>
+       {/* Trust Stats & Brand Logos section 8*/}
+       <section>
+        <TrustStats/>
+       </section>
+       {/* Detail Features section 9 */}
+       <section>
+        <DetailSections/>
+       </section>
+       {/* Secret Sauce section 10 */}
+       <section>
+        <SecretSauce/>
+       </section>
+       {/* International Standard section 11 */}
+       <section>
+        <PremiumPress/>
+       </section>
     </main>
   );
 }

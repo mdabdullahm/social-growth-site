@@ -97,7 +97,7 @@ const SuccessStories = () => {
     <section className="py-24 bg-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 text-center mb-16">
         <h2 className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-          Client Success Stories
+          Client Success Stories Review 15,000+
         </h2>
       </div>
 
