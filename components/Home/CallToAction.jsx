@@ -85,7 +85,7 @@ const CallToAction = () => {
                 <motion.button 
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="relative overflow-hidden bg-slate-900 text-white px-8 py-3 rounded-xl font-bold text-base shadow-lg group-hover:shadow-blue-500/30 transition-all duration-300 mt-2"
+                  className="relative overflow-hidden bg-[#EEF20F] text-black hover:text-white px-8 py-3 rounded-xl font-bold text-base shadow-lg group-hover:shadow-blue-500/30 transition-all duration-300 mt-2"
                 >
                   <span className="relative z-10">See Live Demo</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
