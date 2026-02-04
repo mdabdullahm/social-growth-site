@@ -76,7 +76,7 @@ const ContentGuide = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           className="mt-20"
         >
-          <button className="bg-slate-900 text-white px-12 py-5 rounded-2xl font-black text-lg shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:bg-blue-600 hover:-translate-y-1 transition-all flex items-center gap-3 mx-auto active:scale-95 group">
+          <button className="bg-[#EEF20F] text-black px-12 py-5 rounded-2xl font-black text-lg shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:bg-blue-600 hover:text-white hover:-translate-y-1 transition-all flex items-center gap-3 mx-auto active:scale-95 group">
             View Entire Strategy Guide
             <ArrowRight className="group-hover:translate-x-2 transition-transform" />
           </button>
