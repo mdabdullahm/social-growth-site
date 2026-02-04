@@ -44,7 +44,7 @@ const Navbar = () => {
 
                     {/* 2. Desktop Menu */}
                     <div className="hidden lg:flex space-x-8 items-center text-[12px] font-bold text-gray-600 tracking-widest uppercase">
-                        <Link href="/" className="hover:text-blue-600 transition-colors">Tiktok</Link>
+                        <Link href="/tiktok" className="hover:text-blue-600 transition-colors">Tiktok</Link>
                         <Link href="#" className="hover:text-blue-600 transition-colors">Products</Link>
                         <Link href="#" className="hover:text-blue-600 transition-colors">Pricing</Link>
                         <Link href="#" className="hover:text-blue-600 transition-colors">Tools</Link>
