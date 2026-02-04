@@ -12,6 +12,7 @@ import TrustStats from "@/components/Home/TrustStats";
 import DetailSections from "@/components/Home/DetailSections";
 import SecretSauce from "@/components/Home/SecretSauce";
 import PremiumPress from "@/components/Home/PremiumPress";
+import FAQ from "@/components/Home/FAQ";
 // section 3 logo
 const logos = [
   { name: "Nutribullet", url: "https://i.ibb.co.com/LdTp91y7/logos-logistica-promocional-logo-61-EAEDFE0-D-seeklogo-com.png" },
@@ -483,6 +484,10 @@ export default function Home() {
        {/* International Standard section 11 */}
        <section>
         <PremiumPress/>
+       </section>
+       {/* Frequently Asked Questions (FAQ) section 12 */}
+       <section>
+        <FAQ/>
        </section>
     </main>
   );
