@@ -1,11 +1,13 @@
 import TikTokHero from "@/components/tiktok/TikTokHero";
-import TikTokBackground from "@/components/tiktok/TikTokBackground";
+import TikTokCreators from "@/components/tiktok/TikTokCreators";
 
 export default function TikTokPage() {
   return (
     <main className="relative min-h-screen bg-white overflow-hidden pt-24">
-      <TikTokBackground />
+      {/* hero design */}
       <TikTokHero />
+      {/* TikTok Creators & Testimonials */}
+      <TikTokCreators/>
     </main>
   );
 }
